@@ -14,6 +14,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { type Car } from "@/components/cars/CarCard";
 import { isCarAvailable } from "@/lib/reservations";
+import { collection, getDocs } from "firebase/firestore";
+
+export async function generateStaticParams() {
+  const querySnapshot = await getDocs(collection(db, "cars"));
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+  }));
+}
 
 export default function CarDetailsPage() {
   const { id } = useParams();

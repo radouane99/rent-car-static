@@ -5,6 +5,15 @@ import { ArrowLeft, Calendar, User, Share2 } from "lucide-react";
 import Link from "next/link";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { motion } from "framer-motion";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
+
+export async function generateStaticParams() {
+  const querySnapshot = await getDocs(collection(db, "posts"));
+  return querySnapshot.docs.map((doc) => ({
+    slug: doc.data().slug,
+  }));
+}
 
 const MOCK_POSTS = [
   {
