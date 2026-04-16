@@ -30,6 +30,7 @@ export default function AdminCarsPage() {
     description: "",
     available: true,
     image: null as File | null,
+    imageURL: "",
     imagePreview: "" as string,
   });
 
@@ -62,7 +63,7 @@ export default function AdminCarsPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      let imageUrl = editingCar?.image || "";
+      let imageUrl = formData.imageURL || editingCar?.image || "";
       
       if (formData.image) {
         try {
@@ -70,7 +71,10 @@ export default function AdminCarsPage() {
           const snapshot = await uploadBytes(storageRef, formData.image);
           imageUrl = await getDownloadURL(snapshot.ref);
         } catch (storageErr: any) {
-          throw new Error(`Upload Failed: ${storageErr.message || "Possible Permission Issue"}`);
+          console.warn("Storage upload failed, falling back to URL if present", storageErr);
+          if (!imageUrl && !formData.imageURL) {
+             throw new Error("Upload failed and no Image URL provided. Check your Firebase Storage plan.");
+          }
         }
       }
 
@@ -100,7 +104,7 @@ export default function AdminCarsPage() {
   };
 
   const resetForm = () => {
-    setFormData({ name: "", price_per_day: "", category: "Supercar", description: "", available: true, image: null, imagePreview: "" });
+    setFormData({ name: "", price_per_day: "", category: "Supercar", description: "", available: true, image: null, imageURL: "", imagePreview: "" });
     setEditingCar(null);
     setIsModalOpen(false);
   };
@@ -114,6 +118,7 @@ export default function AdminCarsPage() {
       description: car.description,
       available: car.available,
       image: null,
+      imageURL: car.image,
       imagePreview: car.image,
     });
     setIsModalOpen(true);
@@ -318,34 +323,46 @@ export default function AdminCarsPage() {
                       </div>
 
                       <div className="space-y-8">
-                          <div className="space-y-2">
-                             <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Hash (Primary Image)</label>
-                             <div className="relative group">
+                          <div className="space-y-4">
+                             <div className="space-y-2">
+                                <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Asset (Option A: Image URL)</label>
                                 <input 
-                                  type="file" 
-                                  className="hidden" 
-                                  id="image-upload" 
-                                  accept="image/*"
-                                  onChange={handleImageChange}
+                                  placeholder="https://images.unsplash.com/..."
+                                  className="w-full bg-white/5 border border-white/10 p-4 text-xs text-white/60 focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
+                                  value={formData.imageURL} 
+                                  onChange={e => setFormData({...formData, imageURL: e.target.value, imagePreview: e.target.value})}
                                 />
-                                <label htmlFor="image-upload" className="w-full aspect-video border border-dashed border-white/10 flex flex-col items-center justify-center gap-3 cursor-pointer group-hover:border-primary/50 group-hover:bg-primary/5 transition-all overflow-hidden relative">
-                                   {formData.imagePreview ? (
-                                     <>
-                                        <img src={formData.imagePreview} alt="Preview" className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity">
-                                           <Upload size={24} className="text-primary mb-2" />
-                                           <span className="text-[10px] uppercase font-black tracking-widest">Swap Visual Asset</span>
-                                        </div>
-                                     </>
-                                   ) : (
-                                     <>
-                                        <div className="p-4 bg-white/5 rounded-full">
-                                           <Upload size={24} className="text-white/20 group-hover:text-primary transition-colors" />
-                                        </div>
-                                        <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold group-hover:text-white transition-colors">Select Visual Hash</span>
-                                     </>
-                                   )}
-                                </label>
+                             </div>
+
+                             <div className="space-y-2">
+                                <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Hash (Option B: File Upload)</label>
+                                <div className="relative group">
+                                   <input 
+                                     type="file" 
+                                     className="hidden" 
+                                     id="image-upload" 
+                                     accept="image/*"
+                                     onChange={handleImageChange}
+                                   />
+                                   <label htmlFor="image-upload" className="w-full h-32 border border-dashed border-white/10 flex flex-col items-center justify-center gap-3 cursor-pointer group-hover:border-primary/50 group-hover:bg-primary/5 transition-all overflow-hidden relative">
+                                      {formData.imagePreview ? (
+                                        <>
+                                           <img src={formData.imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity">
+                                              <Upload size={24} className="text-primary mb-2" />
+                                              <span className="text-[10px] uppercase font-black tracking-widest">Swap Visual Asset</span>
+                                           </div>
+                                        </>
+                                      ) : (
+                                        <>
+                                           <div className="p-4 bg-white/5 rounded-full">
+                                              <Upload size={24} className="text-white/20 group-hover:text-primary transition-colors" />
+                                           </div>
+                                           <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold group-hover:text-white transition-colors">Upload Legacy File</span>
+                                        </>
+                                      )}
+                                   </label>
+                                </div>
                              </div>
                           </div>
 
