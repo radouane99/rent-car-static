@@ -401,5 +401,3 @@ export default function AdminCarsPage() {
     </div>
   );
 }
-
-import { cn } from "@/lib/utils";
