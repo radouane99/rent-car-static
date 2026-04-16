@@ -24,20 +24,21 @@ export function SearchSection() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto -mt-20 relative z-20 px-6">
+    <div className="w-full max-w-6xl mx-auto -mt-16 relative z-20 px-6">
       <form 
         onSubmit={handleSearch}
-        className="glass p-2 md:p-3 rounded-sm grid grid-cols-1 md:grid-cols-5 gap-2 items-end shadow-2xl"
+        className="bg-black/80 backdrop-blur-3xl p-1 md:p-1 border border-white/5 grid grid-cols-1 md:grid-cols-5 gap-0 items-stretch shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
       >
         {/* Location */}
-        <div className="space-y-2 p-3 border-r border-white/5 last:border-0">
-          <label className="text-[10px] uppercase tracking-widest text-primary font-bold flex items-center gap-2">
-            <MapPin size={12} /> Pickup Location
+        <div className="group space-y-2 p-6 border-r border-white/5 hover:bg-white/[0.02] transition-colors relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+          <label className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-black flex items-center gap-3">
+            <MapPin size={10} className="text-primary" /> Departure Point
           </label>
           <input 
             type="text" 
             placeholder="City or Airport"
-            className="bg-transparent border-none text-white text-sm focus:outline-none w-full placeholder:text-white/20"
+            className="bg-transparent border-none text-white text-[13px] font-bold focus:outline-none w-full placeholder:text-white/10 mt-2"
             required
             value={formData.pickup}
             onChange={(e) => setFormData({...formData, pickup: e.target.value})}
@@ -45,68 +46,59 @@ export function SearchSection() {
         </div>
 
         {/* Dropoff */}
-        <div className="space-y-2 p-3 border-r border-white/5 last:border-0">
-          <label className="text-[10px] uppercase tracking-widest text-primary font-bold flex items-center gap-2">
-            <MapPin size={12} /> Drop-off
+        <div className="group space-y-2 p-6 border-r border-white/5 hover:bg-white/[0.02] transition-colors relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+          <label className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-black flex items-center gap-3">
+            <MapPin size={10} className="text-primary" /> Arrival Point
           </label>
           <input 
             type="text" 
-            placeholder="Same as pickup"
-            className="bg-transparent border-none text-white text-sm focus:outline-none w-full placeholder:text-white/20"
+            placeholder="Exclusive Drop-off"
+            className="bg-transparent border-none text-white text-[13px] font-bold focus:outline-none w-full placeholder:text-white/10 mt-2"
             value={formData.dropoff}
             onChange={(e) => setFormData({...formData, dropoff: e.target.value})}
           />
         </div>
 
         {/* Start Date & Time */}
-        <div className="space-y-2 p-3 border-r border-white/5 last:border-0">
-          <label className="text-[10px] uppercase tracking-widest text-primary font-bold flex items-center gap-2">
-            <Calendar size={12} /> Pick-up Date
+        <div className="group space-y-2 p-6 border-r border-white/5 hover:bg-white/[0.02] transition-colors relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+          <label className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-black flex items-center gap-3">
+            <Calendar size={10} className="text-primary" /> Activation Date
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-2">
             <input 
               type="date" 
-              className="bg-transparent border-none text-white text-xs focus:outline-none w-full [color-scheme:dark]"
+              className="bg-transparent border-none text-white text-[11px] font-bold focus:outline-none w-full [color-scheme:dark]"
               required
               value={formData.startDate}
               onChange={(e) => setFormData({...formData, startDate: e.target.value})}
-            />
-            <input 
-              type="time" 
-              className="bg-transparent border-none text-white text-xs focus:outline-none [color-scheme:dark]"
-              value={formData.startTime}
-              onChange={(e) => setFormData({...formData, startTime: e.target.value})}
             />
           </div>
         </div>
 
         {/* End Date & Time */}
-        <div className="space-y-2 p-3 border-r border-white/5 last:border-0">
-          <label className="text-[10px] uppercase tracking-widest text-primary font-bold flex items-center gap-2">
-            <Calendar size={12} /> Return Date
+        <div className="group space-y-2 p-6 border-r border-white/5 hover:bg-white/[0.02] transition-colors relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+          <label className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-black flex items-center gap-3">
+            <Calendar size={10} className="text-primary" /> Deactivation
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-2">
             <input 
               type="date" 
-              className="bg-transparent border-none text-white text-xs focus:outline-none w-full [color-scheme:dark]"
+              className="bg-transparent border-none text-white text-[11px] font-bold focus:outline-none w-full [color-scheme:dark]"
               required
               value={formData.endDate}
               onChange={(e) => setFormData({...formData, endDate: e.target.value})}
-            />
-            <input 
-              type="time" 
-              className="bg-transparent border-none text-white text-xs focus:outline-none [color-scheme:dark]"
-              value={formData.endTime}
-              onChange={(e) => setFormData({...formData, endTime: e.target.value})}
             />
           </div>
         </div>
 
         {/* Submit */}
-        <div className="p-2">
-          <Button type="submit" className="w-full h-14 md:h-full flex items-center gap-3">
-            <Search size={18} />
-            Search
+        <div className="relative group overflow-hidden">
+          <Button type="submit" className="w-full h-full bg-primary text-black rounded-none flex flex-col items-center justify-center gap-2 font-black tracking-[0.3em] text-[10px] hover:bg-white transition-colors duration-500">
+            <Search size={16} />
+            SCAN FLEET
           </Button>
         </div>
       </form>
