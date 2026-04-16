@@ -65,16 +65,15 @@ export default function AdminCarsPage() {
     try {
       let imageUrl = formData.imageURL || editingCar?.image || "";
       
-      if (formData.image) {
+      // ONLY try to upload if NO URL is provided
+      if (formData.image && !formData.imageURL) {
         try {
           const storageRef = ref(storage, `cars/${Date.now()}_${formData.image.name}`);
           const snapshot = await uploadBytes(storageRef, formData.image);
           imageUrl = await getDownloadURL(snapshot.ref);
         } catch (storageErr: any) {
-          console.warn("Storage upload failed, falling back to URL if present", storageErr);
-          if (!imageUrl && !formData.imageURL) {
-             throw new Error("Upload failed and no Image URL provided. Check your Firebase Storage plan.");
-          }
+          console.warn("Storage upload failed", storageErr);
+          throw new Error("Local upload failed. Please use the 'Image URL' box instead to bypass your storage limits.");
         }
       }
 
