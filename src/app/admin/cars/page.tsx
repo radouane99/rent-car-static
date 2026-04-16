@@ -63,18 +63,32 @@ export default function AdminCarsPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      let imageUrl = formData.imageURL || editingCar?.image || "";
+      let imageUrl = editingCar?.image || "";
       
-      // ONLY try to upload if NO URL is provided
-      if (formData.image && !formData.imageURL) {
+      if (formData.image) {
         try {
-          const storageRef = ref(storage, `cars/${Date.now()}_${formData.image.name}`);
-          const snapshot = await uploadBytes(storageRef, formData.image);
-          imageUrl = await getDownloadURL(snapshot.ref);
-        } catch (storageErr: any) {
-          console.warn("Storage upload failed", storageErr);
-          throw new Error("Local upload failed. Please use the 'Image URL' box instead to bypass your storage limits.");
+          const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+          const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+          
+          const uploadData = new FormData();
+          uploadData.append("file", formData.image);
+          uploadData.append("upload_preset", uploadPreset!);
+
+          const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+            { method: "POST", body: uploadData }
+          );
+
+          if (!response.ok) throw new Error("Cloudinary Upload Failed");
+          
+          const data = await response.json();
+          imageUrl = data.secure_url;
+        } catch (uploadErr: any) {
+          console.error("Upload Error:", uploadErr);
+          throw new Error("Direct Upload failed. Check your Cloudinary settings.");
         }
+      } else if (formData.imageURL) {
+        imageUrl = formData.imageURL;
       }
 
       const carData = {
@@ -322,19 +336,9 @@ export default function AdminCarsPage() {
                       </div>
 
                       <div className="space-y-8">
-                          <div className="space-y-4">
+                          <div className="space-y-6">
                              <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Asset (Option A: Image URL)</label>
-                                <input 
-                                  placeholder="https://images.unsplash.com/..."
-                                  className="w-full bg-white/5 border border-white/10 p-4 text-xs text-white/60 focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
-                                  value={formData.imageURL} 
-                                  onChange={e => setFormData({...formData, imageURL: e.target.value, imagePreview: e.target.value})}
-                                />
-                             </div>
-
-                             <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Hash (Option B: File Upload)</label>
+                                <label className="text-[10px] uppercase font-black text-white/30 tracking-widest">Visual Hash (Direct Secure Upload)</label>
                                 <div className="relative group">
                                    <input 
                                      type="file" 
@@ -343,7 +347,7 @@ export default function AdminCarsPage() {
                                      accept="image/*"
                                      onChange={handleImageChange}
                                    />
-                                   <label htmlFor="image-upload" className="w-full h-32 border border-dashed border-white/10 flex flex-col items-center justify-center gap-3 cursor-pointer group-hover:border-primary/50 group-hover:bg-primary/5 transition-all overflow-hidden relative">
+                                   <label htmlFor="image-upload" className="w-full aspect-video border border-dashed border-white/10 flex flex-col items-center justify-center gap-3 cursor-pointer group-hover:border-primary/50 group-hover:bg-primary/5 transition-all overflow-hidden relative">
                                       {formData.imagePreview ? (
                                         <>
                                            <img src={formData.imagePreview} alt="Preview" className="w-full h-full object-cover" />
@@ -357,12 +361,22 @@ export default function AdminCarsPage() {
                                            <div className="p-4 bg-white/5 rounded-full">
                                               <Upload size={24} className="text-white/20 group-hover:text-primary transition-colors" />
                                            </div>
-                                           <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold group-hover:text-white transition-colors">Upload Legacy File</span>
+                                           <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold group-hover:text-white transition-colors">Select Visual Hash</span>
                                         </>
                                       )}
                                    </label>
                                 </div>
                              </div>
+                             {/* Optional URL hidden by default for clean UI */}
+                             <details className="cursor-pointer">
+                                <summary className="text-[8px] uppercase text-white/20 font-bold hover:text-white/40 transition-colors">Advanced: Use Image URL</summary>
+                                <input 
+                                  placeholder="https://..."
+                                  className="mt-2 w-full bg-white/5 border border-white/10 p-2 text-[10px] text-white/40 focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
+                                  value={formData.imageURL} 
+                                  onChange={e => setFormData({...formData, imageURL: e.target.value, imagePreview: e.target.value})}
+                                />
+                             </details>
                           </div>
 
                           <div className="flex items-center justify-between p-6 glass border-white/5 bg-white/[0.02]">
