@@ -1,17 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import Link from "next/link";
-import { LayoutDashboard, Car, FileText, Settings, LogOut, ExternalLink } from "lucide-react";
+import { 
+  LayoutDashboard, Car, FileText, Settings, 
+  LogOut, ExternalLink, Menu, X, Shield, Globe
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,57 +36,195 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     router.push("/admin");
   };
 
-  if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-primary uppercase tracking-[1em] animate-pulse">Security Check...</div>;
+  if (loading) return (
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-6">
+       <div className="w-12 h-12 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+       <p className="text-primary uppercase tracking-[0.5em] text-[10px] font-bold animate-pulse">Establishing Secure Uplink</p>
+    </div>
+  );
+
+  const navLinks = [
+    { href: "/admin/dashboard", icon: LayoutDashboard, label: "Command Center" },
+    { href: "/admin/cars", icon: Car, label: "Fleet Inventory" },
+    { href: "/admin/blog", icon: FileText, label: "Global Content" },
+    { href: "/admin/settings", icon: Settings, label: "Core Protocol" },
+  ];
 
   return (
-    <div className="flex min-h-screen bg-[#020202]">
+    <div className="flex min-h-screen bg-[#050505] text-white selection:bg-primary selection:text-dark">
+      {/* Sidebar Overlay for Mobile */}
+      <AnimatePresence>
+        {!isSidebarOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsSidebarOpen(true)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[40] lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Sidebar */}
-      <aside className="w-64 bg-dark border-r border-white/5 flex flex-col p-6 fixed inset-y-0">
-        <div className="mb-12">
-            <h1 className="text-xl font-display font-black text-white italic tracking-tighter uppercase">
-                LUXDRIVE <span className="text-primary text-[10px] block not-italic font-bold tracking-[0.4em] mt-1">Management</span>
-            </h1>
+      <aside 
+        className={cn(
+          "fixed inset-y-0 left-0 z-[50] flex flex-col bg-dark border-r border-white/5 transition-all duration-500 ease-in-out",
+          isSidebarOpen ? "w-72" : "w-20"
+        )}
+      >
+        {/* Toggle Button */}
+        <button 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="absolute -right-3 top-20 w-6 h-6 bg-primary text-dark rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl shadow-primary/20 z-[60]"
+        >
+          {isSidebarOpen ? <X size={12} /> : <Menu size={12} />}
+        </button>
+
+        {/* Logo Section */}
+        <div className="p-8 mb-4">
+            <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center text-primary border border-primary/20 shrink-0">
+                    <Shield size={20} />
+                </div>
+                {isSidebarOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="overflow-hidden whitespace-nowrap"
+                  >
+                      <h1 className="text-lg font-display font-black italic tracking-tighter uppercase leading-none">
+                          LUXDRIVE
+                      </h1>
+                      <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-white/30">System Control</span>
+                  </motion.div>
+                )}
+            </div>
         </div>
 
-        <nav className="flex-grow space-y-2">
-           <AdminNavLink href="/admin/dashboard" icon={LayoutDashboard} label="Overview" />
-           <AdminNavLink href="/admin/cars" icon={Car} label="Fleet Manager" />
-           <AdminNavLink href="/admin/blog" icon={FileText} label="Content / Blog" />
-           <AdminNavLink href="/admin/settings" icon={Settings} label="Global Settings" />
+        {/* Navigation */}
+        <nav className="flex-grow px-4 space-y-2">
+           {navLinks.map((link) => (
+             <AdminNavLink 
+               key={link.href}
+               href={link.href} 
+               icon={link.icon} 
+               label={link.label} 
+               isActive={pathname === link.href}
+               isOpen={isSidebarOpen}
+             />
+           ))}
         </nav>
 
-        <div className="mt-auto space-y-4 pt-6 border-t border-white/5">
-           <Link href="/" target="_blank" className="flex items-center gap-3 text-white/40 hover:text-white transition-colors text-[10px] uppercase tracking-widest font-bold">
-              <ExternalLink size={14} /> Public Website
-           </Link>
-           <button 
-             onClick={handleLogout}
-             className="flex items-center gap-3 text-red-500/60 hover:text-red-500 transition-colors text-[10px] uppercase tracking-widest font-bold w-full"
-           >
-              <LogOut size={14} /> Termination Session
-           </button>
+        {/* Footer Sidebar */}
+        <div className="p-4 mt-auto space-y-2">
+            <Link 
+              href="/" 
+              target="_blank" 
+              className={cn(
+                "flex items-center gap-4 px-4 py-3 text-white/30 hover:text-white transition-colors group",
+                !isSidebarOpen && "justify-center"
+              )}
+            >
+               <Globe size={18} className="group-hover:text-primary transition-colors shrink-0" />
+               {isSidebarOpen && <span className="text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">View Public Node</span>}
+            </Link>
+            
+            <button 
+              onClick={handleLogout}
+              className={cn(
+                "flex items-center gap-4 px-4 py-3 text-red-500/40 hover:text-red-500 transition-colors w-full group",
+                !isSidebarOpen && "justify-center"
+              )}
+            >
+               <LogOut size={18} className="shrink-0" />
+               {isSidebarOpen && <span className="text-[10px] uppercase font-bold tracking-widest whitespace-nowrap">Terminate Access</span>}
+            </button>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-grow ml-64 p-12">
-        {children}
-      </main>
+      {/* Main Content Area */}
+      <div className={cn(
+        "flex-grow transition-all duration-500 ease-in-out",
+        isSidebarOpen ? "ml-72" : "ml-20"
+      )}>
+        {/* Header / Top Bar */}
+        <header className="h-20 border-b border-white/5 bg-dark/50 backdrop-blur-xl sticky top-0 z-[30] px-12 flex items-center justify-between">
+           <div className="flex items-center gap-4">
+              <div className="h-8 w-[1px] bg-white/10" />
+              <div className="text-[10px] uppercase tracking-widest font-bold text-white/40">
+                 Current Node: <span className="text-white">{pathname.split('/').pop()}</span>
+              </div>
+           </div>
+
+           <div className="flex items-center gap-6">
+              <div className="flex flex-col items-end">
+                  <span className="text-[10px] text-white font-bold uppercase tracking-wider">{user?.email?.split('@')[0]}</span>
+                  <span className="text-[8px] text-primary uppercase font-black tracking-tighter">System Administrator</span>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-gold-dark p-[1px]">
+                  <div className="w-full h-full rounded-full bg-dark flex items-center justify-center font-display font-black text-primary text-xs">
+                    {user?.email?.[0].toUpperCase()}
+                  </div>
+              </div>
+           </div>
+        </header>
+
+        {/* Page Content */}
+        <main className="p-12 max-w-[1600px] mx-auto">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {children}
+          </motion.div>
+        </main>
+      </div>
     </div>
   );
 }
 
-function AdminNavLink({ href, icon: Icon, label }: { href: string; icon: any; label: string }) {
+interface NavLinkProps {
+  href: string;
+  icon: any;
+  label: string;
+  isActive: boolean;
+  isOpen: boolean;
+}
+
+function AdminNavLink({ href, icon: Icon, label, isActive, isOpen }: NavLinkProps) {
   return (
     <Link 
       href={href}
       className={cn(
-        "flex items-center gap-4 px-4 py-3 rounded-sm text-[10px] uppercase tracking-widest font-bold transition-all duration-300",
-        "text-white/40 hover:bg-white/5 hover:text-primary"
+        "flex items-center gap-4 px-4 py-4 rounded-sm transition-all duration-300 group relative",
+        isActive 
+          ? "bg-primary/10 text-primary border-l-2 border-primary" 
+          : "text-white/40 hover:bg-white/5 hover:text-white",
+        !isOpen && "justify-center px-0"
       )}
     >
-      <Icon size={16} />
-      {label}
+      <Icon size={20} className={cn("shrink-0", isActive && "text-primary")} />
+      
+      {isOpen ? (
+        <span className="text-[10px] uppercase tracking-[0.2em] font-black whitespace-nowrap">
+          {label}
+        </span>
+      ) : (
+        <div className="absolute left-full ml-4 px-3 py-2 bg-dark border border-white/10 rounded-sm text-[8px] uppercase font-bold tracking-widest text-primary opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-[100]">
+           {label}
+        </div>
+      )}
+
+      {isActive && isOpen && (
+        <motion.div 
+          layoutId="activeNav"
+          className="absolute inset-0 bg-primary/5 -z-10"
+          initial={false}
+          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+        />
+      )}
     </Link>
   );
 }
