@@ -35,7 +35,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleLang = (newLocale: string) => setLocale(newLocale);
+  const toggleLang = (newLocale: "en" | "fr") => setLocale(newLocale);
 
   return (
     <nav

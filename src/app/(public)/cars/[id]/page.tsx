@@ -1,8 +1,22 @@
 import { Suspense } from "react";
 import CarDetailsClient from "@/components/cars/CarDetailsClient";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateStaticParams() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "cars"));
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+    }));
+  } catch (err) {
+    console.error("Error generating static params:", err);
+    return [];
+  }
 }
 
 export default async function CarDetailsPage({ params }: PageProps) {
