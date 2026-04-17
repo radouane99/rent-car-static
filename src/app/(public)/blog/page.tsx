@@ -41,7 +41,7 @@ export default function BlogPage() {
       <div className="container mx-auto px-6">
         <header className="mb-20 text-center">
           <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">Luxury Insights</span>
-          <h1 className="text-5xl md:text-7xl font-display font-black text-white uppercase italic mb-6">
+          <h1 className="text-5xl md:text-7xl font-display font-black text-white uppercase mb-6">
             The <span className="text-gold-gradient">LuxDrive</span> Journal
           </h1>
           <p className="text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
@@ -71,7 +71,7 @@ export default function BlogPage() {
                     </div>
                   </div>
                   <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-xl font-display font-bold text-white mb-4 leading-tight group-hover:text-primary transition-colors italic uppercase">
+                    <h3 className="text-xl font-display font-bold text-white mb-4 leading-tight group-hover:text-primary transition-colors uppercase">
                       {post.title}
                     </h3>
                     <p className="text-white/50 text-sm font-light leading-relaxed mb-6">
@@ -92,7 +92,7 @@ export default function BlogPage() {
            <h4 className="text-white/30 font-bold uppercase tracking-[0.5em] text-xs mb-4">Premium Partners</h4>
            <div className="flex flex-wrap justify-center gap-12 opacity-20 grayscale">
               {["LAMBORGHINI", "FERRARI", "ROLLS-ROYCE", "BENTLEY", "PORSCHE"].map(brand => (
-                <span key={brand} className="text-white font-black text-xl italic">{brand}</span>
+                <span key={brand} className="text-white font-black text-xl">{brand}</span>
               ))}
            </div>
         </div>

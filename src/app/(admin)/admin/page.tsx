@@ -31,8 +31,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-6">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
+    <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] px-6">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50" />
       
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -41,41 +41,41 @@ export default function AdminLoginPage() {
         className="w-full max-w-md relative z-10"
       >
         <div className="text-center mb-12">
-            <div className="inline-flex p-4 glass rounded-full mb-6 gold-border">
+            <div className="inline-flex p-4 glass rounded-full mb-6 gold-border shadow-sm">
                 <Car className="text-primary w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-display font-black text-white uppercase italic tracking-tighter">
-                LUXDRIVE <span className="text-primary text-sm not-italic font-bold tracking-[0.3em]">ADMIN</span>
+            <h1 className="text-3xl font-display font-black text-gray-900 uppercase italic tracking-tighter">
+                BENADADA <span className="text-primary text-sm not-italic font-bold tracking-[0.3em]">ADMIN</span>
             </h1>
         </div>
 
-        <GlassCard className="p-10 border-white/5">
+        <GlassCard className="p-10 border-gray-200">
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Email Address</label>
+              <label className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block">Email Address</label>
               <div className="relative">
-                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={16} />
+                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                  <input 
                    type="email" 
                    required
                    value={email}
                    onChange={(e) => setEmail(e.target.value)}
-                   className="w-full bg-white/5 border border-white/10 rounded-none pl-12 pr-4 py-4 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors"
-                   placeholder="admin@luxdrive.com"
+                   className="w-full bg-white border border-gray-200 rounded-none pl-12 pr-4 py-4 text-sm text-gray-900 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-gray-300"
+                   placeholder="admin@benadadacars.com"
                  />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold block">Password</label>
+              <label className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block">Password</label>
               <div className="relative">
-                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={16} />
+                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                  <input 
                    type="password" 
                    required
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
-                   className="w-full bg-white/5 border border-white/10 rounded-none pl-12 pr-4 py-4 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors"
+                   className="w-full bg-white border border-gray-200 rounded-none pl-12 pr-4 py-4 text-sm text-gray-900 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-gray-300"
                    placeholder="••••••••"
                  />
               </div>
@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
 
             <Button 
                 type="submit" 
-                className="w-full font-black text-xs h-14" 
+                className="w-full font-black text-xs h-14 bg-primary text-white hover:bg-primary-dark shadow-md" 
                 disabled={loading}
             >
               {loading ? "Authenticating..." : "Establish Secure Connection"}
@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
           </form>
         </GlassCard>
         
-        <p className="mt-8 text-center text-white/20 text-[9px] uppercase tracking-[0.2em]">
+        <p className="mt-8 text-center text-gray-400 text-[9px] uppercase tracking-[0.2em]">
             Authorized Personnel Only • Secure 256-bit Encryption
         </p>
       </motion.div>

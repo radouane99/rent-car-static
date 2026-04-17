@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-6">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col items-center justify-center gap-6">
        <div className="w-12 h-12 border-2 border-primary border-t-transparent rounded-full animate-spin" />
        <p className="text-primary uppercase tracking-[0.5em] text-[10px] font-bold animate-pulse">Establishing Secure Uplink</p>
     </div>
@@ -51,7 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#050505] text-white selection:bg-primary selection:text-dark">
+    <div className="flex min-h-screen bg-[#FAFAFA] text-gray-900 selection:bg-primary selection:text-white">
       {/* Sidebar Overlay for Mobile */}
       <AnimatePresence>
         {!isSidebarOpen && (
@@ -60,7 +60,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsSidebarOpen(true)}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[40] lg:hidden"
+            className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-[40] lg:hidden"
           />
         )}
       </AnimatePresence>
@@ -68,14 +68,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <aside 
         className={cn(
-          "fixed inset-y-0 left-0 z-[50] flex flex-col bg-dark border-r border-white/5 transition-all duration-500 ease-in-out",
+          "fixed inset-y-0 left-0 z-[50] flex flex-col bg-white border-r border-gray-200 transition-all duration-500 ease-in-out shadow-[0_0_40px_rgba(0,0,0,0.02)]",
           isSidebarOpen ? "w-72" : "w-20"
         )}
       >
         {/* Toggle Button */}
         <button 
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="absolute -right-3 top-20 w-6 h-6 bg-primary text-dark rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl shadow-primary/20 z-[60]"
+          className="absolute -right-3 top-20 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md z-[60]"
         >
           {isSidebarOpen ? <X size={12} /> : <Menu size={12} />}
         </button>
@@ -92,10 +92,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     animate={{ opacity: 1, x: 0 }}
                     className="overflow-hidden whitespace-nowrap"
                   >
-                      <h1 className="text-lg font-display font-black italic tracking-tighter uppercase leading-none">
-                          LUXDRIVE
+                      <h1 className="text-lg font-display font-black italic tracking-tighter uppercase leading-none text-gray-900">
+                          BENADADA
                       </h1>
-                      <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-white/30">System Control</span>
+                      <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-gray-400">System Control</span>
                   </motion.div>
                 )}
             </div>
@@ -121,7 +121,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               href="/" 
               target="_blank" 
               className={cn(
-                "flex items-center gap-4 px-4 py-3 text-white/30 hover:text-white transition-colors group",
+                "flex items-center gap-4 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-sm transition-colors group",
                 !isSidebarOpen && "justify-center"
               )}
             >
@@ -132,7 +132,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <button 
               onClick={handleLogout}
               className={cn(
-                "flex items-center gap-4 px-4 py-3 text-red-500/40 hover:text-red-500 transition-colors w-full group",
+                "flex items-center gap-4 px-4 py-3 text-red-500/70 hover:text-red-500 hover:bg-red-50 rounded-sm transition-colors w-full group",
                 !isSidebarOpen && "justify-center"
               )}
             >
@@ -148,21 +148,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         isSidebarOpen ? "ml-72" : "ml-20"
       )}>
         {/* Header / Top Bar */}
-        <header className="h-20 border-b border-white/5 bg-dark/50 backdrop-blur-xl sticky top-0 z-[30] px-12 flex items-center justify-between">
+        <header className="h-20 border-b border-gray-200 bg-white/80 backdrop-blur-xl sticky top-0 z-[30] px-12 flex items-center justify-between">
            <div className="flex items-center gap-4">
-              <div className="h-8 w-[1px] bg-white/10" />
-              <div className="text-[10px] uppercase tracking-widest font-bold text-white/40">
-                 Current Node: <span className="text-white">{pathname.split('/').pop()}</span>
+              <div className="h-8 w-[1px] bg-gray-200" />
+              <div className="text-[10px] uppercase tracking-widest font-bold text-gray-500">
+                 Current Node: <span className="text-gray-900">{pathname.split('/').pop()}</span>
               </div>
            </div>
 
            <div className="flex items-center gap-6">
               <div className="flex flex-col items-end">
-                  <span className="text-[10px] text-white font-bold uppercase tracking-wider">{user?.email?.split('@')[0]}</span>
+                  <span className="text-[10px] text-gray-900 font-bold uppercase tracking-wider">{user?.email?.split('@')[0]}</span>
                   <span className="text-[8px] text-primary uppercase font-black tracking-tighter">System Administrator</span>
               </div>
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-gold-dark p-[1px]">
-                  <div className="w-full h-full rounded-full bg-dark flex items-center justify-center font-display font-black text-primary text-xs">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-dark p-[1px] shadow-sm">
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center font-display font-black text-primary text-xs">
                     {user?.email?.[0].toUpperCase()}
                   </div>
               </div>
@@ -200,8 +200,8 @@ function AdminNavLink({ href, icon: Icon, label, isActive, isOpen }: NavLinkProp
       className={cn(
         "flex items-center gap-4 px-4 py-4 rounded-sm transition-all duration-300 group relative",
         isActive 
-          ? "bg-primary/10 text-primary border-l-2 border-primary" 
-          : "text-white/40 hover:bg-white/5 hover:text-white",
+          ? "bg-primary/5 text-primary border-r-2 border-primary" 
+          : "text-gray-500 hover:bg-gray-50 hover:text-gray-900",
         !isOpen && "justify-center px-0"
       )}
     >
@@ -212,7 +212,7 @@ function AdminNavLink({ href, icon: Icon, label, isActive, isOpen }: NavLinkProp
           {label}
         </span>
       ) : (
-        <div className="absolute left-full ml-4 px-3 py-2 bg-dark border border-white/10 rounded-sm text-[8px] uppercase font-bold tracking-widest text-primary opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-[100]">
+        <div className="absolute left-full ml-4 px-3 py-2 bg-white border border-gray-200 shadow-lg rounded-sm text-[8px] uppercase font-bold tracking-widest text-primary opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap z-[100]">
            {label}
         </div>
       )}

@@ -114,10 +114,10 @@ export default function AdminBlogPage() {
               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-primary font-bold uppercase tracking-[0.4em] text-[10px]">Content Node Online</span>
            </div>
-           <h1 className="text-5xl font-display font-black text-white uppercase italic tracking-tighter">
+           <h1 className="text-5xl font-display font-black text-gray-900 uppercase italic tracking-tighter">
               CONTENT <span className="text-primary">STUDIO</span>
            </h1>
-           <p className="text-white/30 text-xs uppercase tracking-widest mt-2">Manage global luxury narratives and SEO assets.</p>
+           <p className="text-gray-400 text-xs uppercase tracking-widest mt-2">Manage global luxury narratives and SEO assets.</p>
         </div>
         <Button onClick={() => setIsModalOpen(true)} className="h-14 px-8 flex items-center gap-3 group">
           <Plus size={20} className="group-hover:rotate-90 transition-transform" /> 
@@ -126,13 +126,13 @@ export default function AdminBlogPage() {
       </header>
 
       {/* Control Bar */}
-      <GlassCard className="p-4 flex flex-col md:flex-row gap-4 items-center border-white/5">
+      <GlassCard className="p-4 flex flex-col md:flex-row gap-4 items-center border-gray-200 bg-white shadow-sm">
          <div className="relative flex-grow w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
             <input 
               type="text"
               placeholder="Search intelligence via title or slug..."
-              className="w-full bg-white/5 border border-white/10 rounded-none pl-12 pr-4 py-3 text-xs text-white focus:outline-none focus:border-primary transition-colors"
+              className="w-full bg-white border border-gray-200 rounded-none pl-12 pr-4 py-3 text-xs text-gray-900 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-gray-300"
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
             />
@@ -149,45 +149,45 @@ export default function AdminBlogPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
             >
-              <GlassCard className="group p-6 flex flex-col md:flex-row items-center justify-between border-white/5 hover:border-primary/20 transition-all duration-500 overflow-hidden relative">
+              <GlassCard className="group p-6 flex flex-col md:flex-row items-center justify-between border-gray-200 bg-white shadow-sm hover:border-primary/40 hover:shadow-md transition-all duration-500 overflow-hidden relative">
                  <div className="absolute top-0 right-0 w-32 h-full bg-primary/5 -skew-x-12 translate-x-16 group-hover:translate-x-4 transition-transform duration-700" />
                  
                  <div className="flex items-center gap-8 w-full mr-12">
-                    <div className="p-5 bg-white/5 border border-white/10 shrink-0 group-hover:bg-primary/10 transition-colors">
-                       <FileText size={24} className="text-primary/40 group-hover:text-primary transition-colors" />
+                    <div className="p-5 bg-gray-50 border border-gray-100 shrink-0 group-hover:bg-primary/10 group-hover:border-primary/20 transition-colors">
+                       <FileText size={24} className="text-gray-400 group-hover:text-primary transition-colors" />
                     </div>
                     <div className="flex-grow">
                        <div className="flex items-center gap-3 mb-2">
-                          <p className="text-white font-black uppercase italic tracking-tight text-lg">{post.title}</p>
+                          <p className="text-gray-900 font-black uppercase italic tracking-tight text-lg">{post.title}</p>
                           <span className="text-[8px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-black uppercase tracking-widest">Live Node</span>
                        </div>
                        <div className="flex items-center gap-4">
-                          <p className="text-white/30 text-[9px] uppercase tracking-[0.2em] font-bold flex items-center gap-2">
-                             <Calendar size={12} className="text-primary/40" /> 
+                          <p className="text-gray-500 text-[9px] uppercase tracking-[0.2em] font-bold flex items-center gap-2">
+                             <Calendar size={12} className="text-primary" /> 
                              {post.createdAt?.toDate ? post.createdAt.toDate().toLocaleDateString() : 'Real-time Syncing'}
                           </p>
-                          <p className="text-white/20 text-[9px] uppercase tracking-widest font-bold">Slug: <span className="text-white/40">/{post.slug}</span></p>
+                          <p className="text-gray-400 text-[9px] uppercase tracking-widest font-bold">Slug: <span className="text-gray-500">/{post.slug}</span></p>
                        </div>
                     </div>
                  </div>
 
-                 <div className="flex items-center gap-2 w-full md:w-auto shrink-0 mt-6 md:mt-0">
+                 <div className="flex items-center gap-2 w-full md:w-auto shrink-0 mt-6 md:mt-0 relative z-10">
                     <button 
                       onClick={() => handleEdit(post)}
-                      className="flex-grow p-4 glass rounded-sm text-[9px] uppercase font-black tracking-[0.2em] hover:text-primary hover:border-primary/50 transition-all"
+                      className="flex-grow p-4 bg-white border border-gray-200 shadow-sm rounded-sm text-[9px] uppercase font-black tracking-[0.2em] text-gray-500 hover:text-primary hover:border-primary/50 transition-all"
                     >
                       Refine Asset
                     </button>
                     <button 
                       onClick={() => handleDelete(post.id)}
-                      className="p-4 glass rounded-sm text-red-500/40 hover:text-red-500 hover:border-red-500/50 transition-all"
+                      className="p-4 bg-white border border-gray-200 shadow-sm rounded-sm text-gray-400 hover:text-red-500 hover:border-red-500/50 transition-all"
                     >
                       <Trash2 size={16} />
                     </button>
                     <a 
                       href={`/blog/${post.slug}`} 
                       target="_blank"
-                      className="p-4 glass rounded-sm text-white/20 hover:text-white transition-all"
+                      className="p-4 bg-white border border-gray-200 shadow-sm rounded-sm text-gray-400 hover:text-gray-900 transition-all"
                     >
                        <Eye size={16} />
                     </a>
@@ -199,7 +199,7 @@ export default function AdminBlogPage() {
         
         {filteredPosts.length === 0 && (
           <div className="py-24 text-center">
-             <p className="text-white/20 uppercase tracking-[0.5em] text-[10px] font-bold italic animate-pulse">Scanning Global Neural Net... No Match Found</p>
+             <p className="text-gray-400 uppercase tracking-[0.5em] text-[10px] font-bold italic animate-pulse">Scanning Global Neural Net... No Match Found</p>
           </div>
         )}
       </div>
@@ -221,12 +221,12 @@ export default function AdminBlogPage() {
                exit={{ opacity: 0, scale: 0.95 }}
                className="w-full max-w-5xl relative z-10"
              >
-                <GlassCard className="p-12 gold-border shadow-2xl relative overflow-hidden">
+                <GlassCard className="p-12 border-gray-200 bg-white shadow-2xl relative overflow-hidden">
                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[150px] -z-10" />
                    
                    <div className="flex justify-between items-start mb-12">
                       <div>
-                        <h2 className="text-3xl font-display font-black text-white italic uppercase tracking-tighter leading-none">
+                        <h2 className="text-3xl font-display font-black text-gray-900 italic uppercase tracking-tighter leading-none">
                            {editingPost ? "Refining Intelligence" : "Forging New Narrative"}
                         </h2>
                         <div className="flex items-center gap-3 mt-4">
@@ -234,27 +234,27 @@ export default function AdminBlogPage() {
                            <p className="text-primary text-[10px] uppercase font-bold tracking-[0.4em]">Protocol: {editingPost ? "PATCH_CONTENT" : "POST_NEW_ARTICLE"}</p>
                         </div>
                       </div>
-                      <button onClick={resetForm} className="p-4 glass text-white/40 hover:text-white transition-colors"><X size={24} /></button>
+                      <button onClick={resetForm} className="p-4 border border-gray-200 bg-gray-50 rounded-sm text-gray-400 hover:text-gray-900 transition-colors"><X size={24} /></button>
                    </div>
 
                    <form onSubmit={handleSubmit} className="space-y-10">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                          <div className="space-y-8">
                             <div className="space-y-2">
-                               <label className="text-[10px] uppercase font-black text-white/30 tracking-[0.2em]">Primary Narrative Headline</label>
+                               <label className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Primary Narrative Headline</label>
                                <input 
                                  required 
                                  placeholder="Headline..."
-                                 className="w-full bg-white/5 border border-white/10 p-5 text-sm font-bold text-white focus:outline-none focus:border-primary transition-all rounded-none" 
+                                 className="w-full bg-white border border-gray-200 p-5 text-sm font-bold text-gray-900 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all rounded-none placeholder:text-gray-300" 
                                  value={formData.title} 
                                  onChange={e => setFormData({...formData, title: e.target.value})}
                                />
                             </div>
                             <div className="space-y-2">
-                               <label className="text-[10px] uppercase font-black text-white/30 tracking-[0.2em]">URL Routing Slug</label>
+                               <label className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">URL Routing Slug</label>
                                <input 
                                  placeholder="leave-blank-to-auto-generate"
-                                 className="w-full bg-white/5 border border-white/10 p-5 text-xs text-white/60 focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
+                                 className="w-full bg-white border border-gray-200 p-5 text-xs text-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all rounded-none font-mono placeholder:text-gray-300" 
                                  value={formData.slug} 
                                  onChange={e => setFormData({...formData, slug: e.target.value})}
                                />
@@ -262,19 +262,19 @@ export default function AdminBlogPage() {
                          </div>
                          <div className="space-y-8">
                             <div className="space-y-2">
-                               <label className="text-[10px] uppercase font-black text-white/30 tracking-[0.2em]">Cover Heritage (Image URL)</label>
+                               <label className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Cover Heritage (Image URL)</label>
                                <input 
                                  placeholder="https://images.unsplash.com/..."
-                                 className="w-full bg-white/5 border border-white/10 p-5 text-xs text-white/60 focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
+                                 className="w-full bg-white border border-gray-200 p-5 text-xs text-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all rounded-none font-mono placeholder:text-gray-300" 
                                  value={formData.image} 
                                  onChange={e => setFormData({...formData, image: e.target.value})}
                                />
                             </div>
                             <div className="space-y-2">
-                               <label className="text-[10px] uppercase font-black text-white/30 tracking-[0.2em]">Executive Excerpt (SEO)</label>
+                               <label className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Executive Excerpt (SEO)</label>
                                <input 
                                  placeholder="A brief summary for global search engines..."
-                                 className="w-full bg-white/5 border border-white/10 p-5 text-xs text-white/60 focus:outline-none focus:border-primary transition-all rounded-none" 
+                                 className="w-full bg-white border border-gray-200 p-5 text-xs text-gray-600 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all rounded-none placeholder:text-gray-300" 
                                  value={formData.excerpt} 
                                  onChange={e => setFormData({...formData, excerpt: e.target.value})}
                                />
@@ -284,24 +284,24 @@ export default function AdminBlogPage() {
 
                       <div className="space-y-2">
                          <div className="flex justify-between items-end mb-2">
-                            <label className="text-[10px] uppercase font-black text-white/30 tracking-[0.2em]">Master Narrative Content (HTML Supported)</label>
-                            <span className="text-[8px] text-primary/50 font-bold uppercase tracking-widest">Protocol: UTF-8 SECURE</span>
+                            <label className="text-[10px] uppercase font-black text-gray-500 tracking-[0.2em]">Master Narrative Content (HTML Supported)</label>
+                            <span className="text-[8px] text-primary/80 font-bold uppercase tracking-widest">Protocol: UTF-8 SECURE</span>
                          </div>
                          <textarea 
                            required 
                            rows={12}
                            placeholder="Type your mastery here..."
-                           className="w-full bg-white/5 border border-white/10 p-8 text-sm text-white/80 leading-relaxed focus:outline-none focus:border-primary transition-all rounded-none font-mono" 
+                           className="w-full bg-white border border-gray-200 p-8 text-sm text-gray-800 leading-relaxed focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all rounded-none font-mono placeholder:text-gray-300" 
                            value={formData.content} 
                            onChange={e => setFormData({...formData, content: e.target.value})}
                          />
                       </div>
 
                       <div className="pt-6">
-                         <Button type="submit" disabled={loading} className="w-full h-20 flex items-center justify-center gap-6 group">
+                         <Button type="submit" disabled={loading} className="w-full h-20 flex items-center justify-center gap-6 group bg-primary text-white hover:bg-primary-dark shadow-lg">
                             {loading ? (
                               <div className="flex items-center gap-4">
-                                 <div className="w-5 h-5 border-[3px] border-dark border-t-transparent rounded-full animate-spin" />
+                                 <div className="w-5 h-5 border-[3px] border-white border-t-transparent rounded-full animate-spin" />
                                  <span className="uppercase font-black text-sm tracking-[0.4em] italic">Transmitting Intelligence...</span>
                               </div>
                             ) : (

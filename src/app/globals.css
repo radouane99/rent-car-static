@@ -5,8 +5,8 @@
   --color-primary-dark: #8E7341;
   --color-gold-light: #F4E8D1;
   --color-dark: #050505;
-  --color-surface: #121212;
-  --color-glass: rgba(10, 10, 10, 0.85);
+  --color-surface: #F5F5F5;
+  --color-glass: rgba(255, 255, 255, 0.85);
   
   --font-sans: "Inter", sans-serif;
   --font-display: "Playfair Display", serif;
@@ -14,8 +14,8 @@
 
 @layer base {
   :root {
-    --background: #050505;
-    --foreground: #F5F5F5;
+    --background: #FAFAFA;
+    --foreground: #1A1A1A;
   }
 
   body {
@@ -27,11 +27,15 @@
 
 @layer utilities {
   .glass {
-    @apply bg-[var(--color-glass)] backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-white/90 backdrop-blur-md border border-gray-200/60 shadow-lg;
+  }
+
+  .glass-dark {
+    @apply bg-black/80 backdrop-blur-md border border-white/10 shadow-xl;
   }
   
   .text-gold-gradient {
-    @apply bg-gradient-to-r from-[#D4AF37] via-[#F9E2AF] to-[#9A7B2C] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#B8963E] via-[#D4AF37] to-[#8E7341] bg-clip-text text-transparent;
   }
 
   .gold-border {

@@ -57,7 +57,7 @@ export default function AdminDashboardPage() {
     { label: "Market Strength", value: "$45.2k", sub: "+12% Growth", icon: DollarSign, color: "text-gold-light" },
   ];
 
-  if (loading) return <div className="h-96 flex items-center justify-center text-primary uppercase text-[10px] font-bold tracking-[0.5em] animate-pulse italic">Syncing Global Data...</div>;
+  if (loading) return <div className="h-96 flex items-center justify-center text-primary uppercase text-[10px] font-bold tracking-[0.5em] animate-pulse">Syncing Global Data...</div>;
 
   return (
     <div className="space-y-12">
@@ -66,37 +66,37 @@ export default function AdminDashboardPage() {
            <div className="h-[1px] w-8 bg-primary" />
            <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px]">Administrative Hub</span>
         </div>
-        <h1 className="text-5xl font-display font-black text-white uppercase italic tracking-tighter">
+        <h1 className="text-5xl font-display font-black text-gray-900 uppercase tracking-tighter">
            System <span className="text-primary">Command</span>
         </h1>
-        <p className="text-white/40 text-xs uppercase tracking-widest mt-2">Overseeing global assets and content distribution.</p>
+        <p className="text-gray-400 text-xs uppercase tracking-widest mt-2">Overseeing global assets and content distribution.</p>
       </header>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {statCards.map((stat, i) => (
-          <GlassCard key={i} className="p-8 border-white/5 group hover:border-primary/20 transition-all">
+          <GlassCard key={i} className="p-8 border-gray-200 bg-white group hover:border-primary/40 hover:shadow-lg transition-all shadow-sm">
              <div className="flex justify-between items-start mb-6">
-                <div className="p-4 bg-white/5 rounded-sm group-hover:bg-primary/10 transition-colors">
+                <div className="p-4 bg-gray-50 rounded-sm group-hover:bg-primary/10 transition-colors border border-gray-100 group-hover:border-primary/20">
                    <stat.icon size={22} className={cn(stat.color)} />
                 </div>
-                <div className="flex items-center gap-1 text-[9px] text-primary/50 font-bold uppercase tracking-widest">
+                <div className="flex items-center gap-1 text-[9px] text-gray-400 font-bold uppercase tracking-widest">
                    Live Status
                 </div>
              </div>
-             <p className="text-white/30 text-[9px] uppercase tracking-[0.3em] font-black mb-1">{stat.label}</p>
+             <p className="text-gray-500 text-[9px] uppercase tracking-[0.3em] font-black mb-1">{stat.label}</p>
              <div className="flex items-baseline gap-3">
-                <h3 className="text-4xl font-display font-black text-white">{stat.value}</h3>
-                <span className="text-[10px] text-white/50 uppercase font-bold">{stat.sub}</span>
+                <h3 className="text-4xl font-display font-black text-gray-900">{stat.value}</h3>
+                <span className="text-[10px] text-gray-400 uppercase font-bold">{stat.sub}</span>
              </div>
           </GlassCard>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-         <GlassCard className="p-10 border-white/5">
-            <div className="flex items-center justify-between mb-10 pb-4 border-b border-white/5">
-               <h3 className="text-white font-black uppercase tracking-[0.2em] text-xs flex items-center gap-3 italic">
+         <GlassCard className="p-10 border-gray-200 bg-white shadow-sm">
+            <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-100">
+               <h3 className="text-gray-800 font-black uppercase tracking-[0.2em] text-xs flex items-center gap-3">
                  <Clock size={16} className="text-primary" /> Recent Deployment Activity
                </h3>
                <button className="text-[9px] text-primary uppercase font-black hover:underline tracking-widest">View Archives</button>
@@ -106,31 +106,31 @@ export default function AdminDashboardPage() {
               {recentCars.length > 0 ? recentCars.map((car) => (
                 <div key={car.id} className="flex justify-between items-center group">
                    <div className="flex items-center gap-5">
-                      <div className="w-14 h-14 bg-white/5 overflow-hidden rounded-sm gold-border">
-                        <img src={car.image} alt="" className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-14 h-14 bg-gray-100 overflow-hidden rounded-sm border border-gray-200 group-hover:border-primary/50 transition-colors">
+                        <img src={car.image} alt="" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                       </div>
                       <div>
-                        <p className="text-white font-black uppercase italic text-sm tracking-tight">{car.name}</p>
-                        <p className="text-white/30 text-[9px] uppercase tracking-[0.2em] font-bold">Category: {car.category}</p>
+                        <p className="text-gray-900 font-black uppercase text-sm tracking-tight">{car.name}</p>
+                        <p className="text-gray-400 text-[9px] uppercase tracking-[0.2em] font-bold">Category: {car.category}</p>
                       </div>
                    </div>
                    <div className="text-right">
-                      <p className="text-white font-bold text-sm tracking-tighter">${car.price_per_day}</p>
-                      <p className={cn("text-[8px] uppercase font-black tracking-widest", car.available ? "text-primary" : "text-white/20")}>
+                      <p className="text-gray-900 font-bold text-sm tracking-tighter">${car.price_per_day}</p>
+                      <p className={cn("text-[8px] uppercase font-black tracking-widest", car.available ? "text-primary" : "text-gray-400")}>
                         {car.available ? "Ready for Action" : "Currently Deployed"}
                       </p>
                    </div>
                 </div>
               )) : (
-                <p className="text-white/20 uppercase text-[10px] tracking-widest text-center py-10">No recent deployment records found.</p>
+                <p className="text-gray-400 uppercase text-[10px] tracking-widest text-center py-10">No recent deployment records found.</p>
               )}
             </div>
          </GlassCard>
 
-         <GlassCard className="p-10 border-white/5 overflow-hidden relative">
+         <GlassCard className="p-10 border-gray-200 bg-white shadow-sm overflow-hidden relative">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] -z-10" />
-            <div className="flex items-center justify-between mb-10 pb-4 border-b border-white/5">
-               <h3 className="text-white font-black uppercase tracking-[0.2em] text-xs flex items-center gap-3 italic">
+            <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-100">
+               <h3 className="text-gray-800 font-black uppercase tracking-[0.2em] text-xs flex items-center gap-3">
                  <TrendingUp size={16} className="text-primary" /> System Utilization
                </h3>
             </div>
@@ -144,17 +144,17 @@ export default function AdminDashboardPage() {
                ].map((item, i) => (
                  <div key={i} className="flex justify-between items-center py-2">
                     <div className="flex flex-col">
-                       <span className="text-white font-bold text-xs uppercase tracking-wider">{item.label}</span>
-                       <span className="text-[10px] text-white/30 uppercase tracking-tighter">{item.val}</span>
+                       <span className="text-gray-900 font-bold text-xs uppercase tracking-wider">{item.label}</span>
+                       <span className="text-[10px] text-gray-500 uppercase tracking-tighter">{item.val}</span>
                     </div>
                     <span className="bg-primary/10 text-primary text-[8px] px-3 py-1 rounded-full font-black uppercase tracking-widest">{item.status}</span>
                  </div>
                ))}
             </div>
 
-            <div className="mt-12 p-6 glass border-primary/20 bg-primary/5 text-center">
-                <p className="text-primary font-black uppercase tracking-[0.3em] text-[15px] mb-2 italic">LuxDrive Cloud</p>
-                <p className="text-white/40 text-[9px] uppercase font-bold">All systems reporting optimal operational efficiency.</p>
+            <div className="mt-12 p-6 bg-primary/5 border border-primary/20 rounded-sm text-center">
+                <p className="text-primary font-black uppercase tracking-[0.3em] text-[15px] mb-2">Benadada Cloud</p>
+                <p className="text-gray-500 text-[9px] uppercase font-bold">All systems reporting optimal operational efficiency.</p>
             </div>
          </GlassCard>
       </div>

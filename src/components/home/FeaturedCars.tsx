@@ -6,10 +6,12 @@ import { collection, query, limit, getDocs } from "firebase/firestore";
 import { CarCard, type Car } from "@/components/cars/CarCard";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import { useTranslation } from "@/lib/LanguageContext";
 
 export function FeaturedCars() {
   const [cars, setCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -28,23 +30,23 @@ export function FeaturedCars() {
   }, []);
 
   return (
-    <section className="py-32 bg-black relative">
+    <section className="py-32 bg-[#FAFAFA] relative">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">Exquisite Fleet</span>
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-white uppercase italic">
-              Featured <span className="text-gold-gradient">Icons</span>
+            <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">{t("featured.subtitle")}</span>
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-gray-800 uppercase">
+              {t("featured.title1")} <span className="text-gold-gradient">{t("featured.title2")}</span>
             </h2>
           </div>
           <Link href="/cars">
-            <Button variant="outline">View All Models</Button>
+            <Button variant="outline">{t("featured.viewAll")}</Button>
           </Link>
         </div>
 
         {loading ? (
              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[1, 2, 3].map(i => <div key={i} className="glass aspect-video animate-pulse" />)}
+                {[1, 2, 3].map(i => <div key={i} className="bg-gray-100 aspect-video animate-pulse rounded-lg" />)}
              </div>
         ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

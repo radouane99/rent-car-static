@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Benadada Cars | Location voiture de luxe & sport à Fès</title>
+  <meta name="description" content="Benadada Cars - Agence de location de voitures premium à Fès. Large choix de véhicules luxe, sportifs et SUV. Réservation simple par WhatsApp. Livraison à l'aéroport Fès-Saïss incluse.">
+  <meta name="keywords" content="location voiture Fès, location luxe Fès, Benadada Cars, location sportive Maroc, location voiture aéroport Fès, voiture de luxe Maroc, location Fès pas cher">
+  <meta name="author" content="Benadada Cars">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.benadadacars.ma">
+  <meta property="og:title" content="Benadada Cars - Location de luxe & sport à Fès">
+  <meta property="og:description" content="Agence basée à Fès. Réservez votre voiture de rêve en quelques clics. WhatsApp direct.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=1200&h=630&fit=crop">
+  <meta property="og:url" content="https://www.benadadacars.ma">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #fefcf7;
+      color: #1a2c2e;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #ece4d8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #b8863b;
+      border-radius: 10px;
+    }
+
+    /* Glassmorphism navbar */
+    .glass-nav {
+      background: rgba(255, 252, 245, 0.96);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(184, 134, 59, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-img {
+      height: 52px;
+      width: auto;
+      border-radius: 14px;
+      object-fit: contain;
+    }
+
+    .logo-text h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #c9a03d, #8b5e2e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2c3e2f;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a i {
+      margin-right: 6px;
+      color: #b8863b;
+    }
+
+    .contact-nav {
+      background: #1e2a2c;
+      color: white !important;
+      padding: 8px 24px;
+      border-radius: 40px;
+      transition: 0.3s;
+    }
+
+    .contact-nav:hover {
+      background: #b8863b;
+      color: #1e2a2c !important;
+    }
+
+    /* Hero section with animated gradient */
+    .hero-modern {
+      background: radial-gradient(circle at 10% 30%, #fff3e6, #faead9);
+      padding: 80px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero-left h4 {
+      color: #b8863b;
+      letter-spacing: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .hero-left h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(130deg, #1e2a2c, #b8863b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-left p {
+      margin: 24px 0;
+      color: #4a5b4e;
+      max-width: 500px;
+      font-size: 1.05rem;
+    }
+
+    .fes-badge {
+      background: #fff0e0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .hero-right img {
+      width: 100%;
+      max-width: 580px;
+      border-radius: 48px;
+      box-shadow: 0 35px 50px -20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s;
+    }
+
+    .hero-right img:hover {
+      transform: scale(1.01);
+    }
+
+    /* Section */
+    .section {
+      padding: 80px 0;
+    }
+
+    .container {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .gold-line {
+      width: 90px;
+      height: 4px;
+      background: #b8863b;
+      margin: 18px auto 35px;
+      border-radius: 4px;
+    }
+
+    /* Cars grid modern */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 35px;
+    }
+
+    .car-card {
+      background: white;
+      border-radius: 36px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      border: 1px solid #f2e5d4;
+    }
+
+    .car-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.15);
+    }
+
+    .car-card.selected {
+      border: 2px solid #b8863b;
+      background: #fffbf5;
+      transform: translateY(-5px);
+    }
+
+    .car-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .car-card:hover .car-img {
+      transform: scale(1.02);
+    }
+
+    .car-details {
+      padding: 22px;
+    }
+
+    .car-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .price-day {
+      color: #b8863b;
+      font-weight: 800;
+    }
+
+    .specs {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      color: #6b705c;
+    }
+
+    /* Booking card premium */
+    .reservation-card {
+      background: #ffffff;
+      border-radius: 56px;
+      box-shadow: 0 40px 60px -25px rgba(0, 0, 0, 0.2);
+      padding: 45px;
+      margin: 50px 0 70px;
+      border: 1px solid #ecdbbc;
+      transition: all 0.2s;
+    }
+
+    .selected-preview {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: #faf5ea;
+      padding: 12px 28px;
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 40px;
+    }
+
+    .selected-preview img {
+      width: 70px;
+      height: 70px;
+      border-radius: 24px;
+      object-fit: cover;
+    }
+
+    .form-2cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 210px;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 48px;
+      border: 1px solid #e2d4c2;
+      background: white;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #b8863b;
+      box-shadow: 0 0 0 3px rgba(184, 134, 59, 0.1);
+    }
+
+    .total-glass {
+      background: #1e2a2c;
+      border-radius: 48px;
+      padding: 22px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin: 35px 0 25px;
+    }
+
+    .total-amount {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .whatsapp-full {
+      background: #25D366;
+      width: 100%;
+      border: none;
+      padding: 18px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 60px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .whatsapp-full:hover {
+      background: #1da15b;
+      transform: scale(0.98);
+    }
+
+    /* Local SEO section */
+    .local-seo {
+      background: linear-gradient(115deg, #f5ede2, #fff6ed);
+      border-radius: 60px;
+      padding: 60px 45px;
+      margin: 40px 0 60px;
+      text-align: center;
+    }
+
+    .local-grid {
+      display: flex;
+      justify-content: center;
+      gap: 45px;
+      flex-wrap: wrap;
+      margin: 45px 0 35px;
+    }
+
+    .local-card {
+      background: white;
+      border-radius: 40px;
+      padding: 30px 25px;
+      width: 220px;
+      box-shadow: 0 15px 25px -10px rgba(0,0,0,0.05);
+      transition: 0.2s;
+    }
+
+    .local-card i {
+      font-size: 2.5rem;
+      color: #b8863b;
+      margin-bottom: 15px;
+    }
+
+    .testimonial {
+      background: rgba(255,255,240,0.7);
+      border-radius: 40px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 30px auto 0;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      padding: 45px 20px;
+      border-top: 1px solid #e9ddce;
+      color: #6e6b5e;
+    }
+
+    @media (max-width: 800px) {
+      .nav-inner { flex-direction: column; height: auto; gap: 15px; padding: 15px; }
+      .hero-left h1 { font-size: 2.2rem; }
+      .reservation-card { padding: 28px; }
+      .total-amount { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="glass-nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <!-- Logo fourni par le client (image.png) -->
+      <img src="image.png" alt="Benadada Cars Logo" class="logo-img" onerror="this.src='https://placehold.co/60x60?text=BC'">
+      <div class="logo-text"><h1>BENADADA CARS</h1></div>
+    </div>
+    <div class="nav-links">
+      <a href="#cars"><i class="fas fa-car"></i> Flotte</a>
+      <a href="#reserve"><i class="fas fa-calendar-alt"></i> Réservation</a>
+      <a href="#local"><i class="fas fa-map-pin"></i> Fès</a>
+      <a href="#" id="navWhatsappBtn" class="contact-nav"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-modern">
+  <div class="hero-container">
+    <div class="hero-left">
+      <h4><i class="fas fa-crown"></i> L'EXCELLENCE À FÈS</h4>
+      <h1>Location de luxe & sport au cœur de <span style="color:#b8863b;">Fès</span></h1>
+      <p>Agence Benadada Cars basée à Fès – Service premium, flotte de véhicules d'exception. Réservez en ligne et partez à la découverte du Maroc.</p>
+      <div class="fes-badge"><i class="fas fa-city"></i> Agence principale : Fès - Route de Meknès</div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=650&h=420&fit=crop" alt="Voiture de luxe à Fès">
+    </div>
+  </div>
+</section>
+
+<div class="container" id="cars">
+  <div class="section-title">Notre flotte d'exception</div>
+  <div class="gold-line"></div>
+  <div id="carsGrid" class="cars-grid"></div>
+</div>
+
+<div class="container" id="reserve">
+  <div class="reservation-card">
+    <div class="selected-preview">
+      <img id="previewCarImg" src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=80&h=80&fit=crop" alt="aperçu">
+      <div>
+        <h3 id="previewCarName">Mercedes AMG GT</h3>
+        <p id="previewCarPrice">1600 MAD / jour</p>
+      </div>
+    </div>
+    <div class="form-2cols">
+      <div class="form-group">
+        <label><i class="fas fa-plane-departure"></i> Lieu de départ (prise en charge)</label>
+        <select id="departureSelect"></select>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-plane-arrival"></i> Lieu d'arrivée (restitution)</label>
+        <select id="arrivalSelect"></select>
+      </div>
+    </div>
+    <div class="form-2cols">
+      <div class="form-group">
+        <label><i class="fas fa-calendar-alt"></i> Date de début</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-calendar-check"></i> Date de retour</label>
+        <input type="date" id="endDate">
+      </div>
+    </div>
+    <div id="dateWarning" style="color:#c26b2a; font-size:0.8rem; margin: -15px 0 0 8px;"></div>
+    <div class="total-glass">
+      <span><i class="fas fa-coins"></i> Estimation totale TTC</span>
+      <span class="total-amount" id="totalAmountSpan">0 MAD</span>
+    </div>
+    <button id="reserveWhatsappBtn" class="whatsapp-full">
+      <i class="fab fa-whatsapp fa-xl"></i> Réserver maintenant via WhatsApp
+    </button>
+    <p style="text-align:center; margin-top: 20px; font-size:12px;">Message pré-rempli avec tous les détails – Réponse garantie sous 5 min</p>
+  </div>
+</div>
+
+<section id="local" class="local-seo">
+  <h2><i class="fas fa-map-marked-alt"></i> Pourquoi Benadada Cars à Fès ?</h2>
+  <p>Agence 100% locale, flotte entretenue avec soin, livraison gratuite à l'aéroport Fès-Saïss et dans toute la ville.</p>
+  <div class="local-grid">
+    <div class="local-card"><i class="fas fa-car-side"></i><h3>+40 véhicules</h3><p>Luxe, sport, SUV</p></div>
+    <div class="local-card"><i class="fas fa-headset"></i><h3>Support 24/7</h3><p>Assistance WhatsApp</p></div>
+    <div class="local-card"><i class="fas fa-shield-alt"></i><h3>Assurance tout risque</h3><p>Sans franchise cachée</p></div>
+  </div>
+  <div class="testimonial">
+    <i class="fas fa-quote-left" style="color:#b8863b; opacity:0.5;"></i> Meilleure agence de location à Fès ! Voitures impeccables, service rapide. Je recommande vivement.
+    <div style="margin-top: 12px; font-weight: 600;">— Karim L.</div>
+  </div>
+  <p style="margin-top: 40px;"><strong>📍 Adresse :</strong> Route de Meknès, Quartier Industriel, Fès – <strong>📞 +212 6 12 34 56 78</strong></p>
+</section>
+
+<footer>
+  <p>© 2025 Benadada Cars – Location de voitures de luxe & sport à Fès – Tous droits réservés</p>
+  <p><i class="fas fa-shield-alt"></i> Paiement sécurisé | Meilleurs tarifs à Fès et aéroports du Maroc</p>
+</footer>
+
+<script>
+  // Configuration WhatsApp (remplacer par le numéro réel)
+  const WHATSAPP_NUMBER = "212612345678";  // Numéro de l'agence à Fès
+
+  // Liste complète des aéroports + lieux (avec priorité Fès)
+  const locationsList = [
+    "Aéroport Fès-Saïss (Fès)",
+    "Centre-ville Fès (Agence principale)",
+    "Gare Routière Fès",
+    "Aéroport Mohammed V (Casablanca)",
+    "Aéroport Marrakech Menara",
+    "Aéroport Rabat-Salé",
+    "Aéroport Tanger-Ibn Battouta",
+    "Aéroport Agadir-Al Massira",
+    "Aéroport Oujda Angads",
+    "Aéroport Tétouan Sania Ramel",
+    "Aéroport Nador Al Aroui",
+    "Aéroport Essaouira Mogador",
+    "Aéroport Laâyoune Hassan I",
+    "Aéroport Dakhla",
+    "Aéroport Beni Mellal",
+    "Aéroport Errachidia",
+    "Aéroport Guelmim",
+    "Aéroport Zagora",
+    "Centre-ville Casablanca",
+    "Centre-ville Marrakech",
+    "Centre-ville Rabat",
+    "Centre-ville Tanger",
+    "Centre-ville Agadir"
+  ];
+
+  // Flotte de véhicules (luxe & sport)
+  const cars = [
+    { id: 1, name: "Mercedes AMG GT", price: 1600, image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=400&h=250&fit=crop", specs: "V8 Biturbo · 585ch · Automatique", seats: "2", fuel: "Essence" },
+    { id: 2, name: "Porsche 911 Carrera", price: 1850, image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=400&h=250&fit=crop", specs: "Flat 6 · 450ch · Sport", seats: "4", fuel: "Essence" },
+    { id: 3, name: "Range Rover Sport", price: 1350, image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400&h=250&fit=crop", specs: "V6 Diesel · 4x4 · Luxe", seats: "5", fuel: "Diesel" },
+    { id: 4, name: "BMW Série 7", price: 1200, image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=250&fit=crop", specs: "Berline Executive · Cuir", seats: "5", fuel: "Hybride" },
+    { id: 5, name: "Ferrari F8 Tributo", price: 3400, image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=400&h=250&fit=crop", specs: "V8 Twin Turbo · 720ch", seats: "2", fuel: "Essence" },
+    { id: 6, name: "Lamborghini Urus", price: 2900, image: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=400&h=250&fit=crop", specs: "SUV Super Sport · 650ch", seats: "5", fuel: "Essence" },
+    { id: 7, name: "Audi RS7", price: 1550, image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=400&h=250&fit=crop", specs: "V8 600ch · Quattro", seats: "5", fuel: "Essence" },
+    { id: 8, name: "Cadillac Escalade", price: 2100, image: "https://images.unsplash.com/photo-1625047509168-a5726e877775?w=400&h=250&fit=crop", specs: "SUV Premium · 7 places", seats: "7", fuel: "Essence" }
+  ];
+
+  let selectedCar = cars[0];
+  const carsContainer = document.getElementById('carsGrid');
+  const previewImg = document.getElementById('previewCarImg');
+  const previewName = document.getElementById('previewCarName');
+  const previewPriceSpan = document.getElementById('previewCarPrice');
+  const departureSelect = document.getElementById('departureSelect');
+  const arrivalSelect = document.getElementById('arrivalSelect');
+  const startDateInput = document.getElementById('startDate');
+  const endDateInput = document.getElementById('endDate');
+  const dateWarningDiv = document.getElementById('dateWarning');
+  const totalSpan = document.getElementById('totalAmountSpan');
+  const reserveBtn = document.getElementById('reserveWhatsappBtn');
+  const navBtn = document.getElementById('navWhatsappBtn');
+
+  // Remplir les select avec tous les lieux
+  function populateLocations() {
+    locationsList.forEach(loc => {
+      const opt1 = new Option(loc, loc);
+      const opt2 = new Option(loc, loc);
+      departureSelect.appendChild(opt1);
+      arrivalSelect.appendChild(opt2);
+    });
+    departureSelect.value = "Aéroport Fès-Saïss (Fès)";
+    arrivalSelect.value = "Centre-ville Fès (Agence principale)";
+  }
+
+  // Calcul du total (jours)
+  function computeTotal() {
+    const start = startDateInput.value;
+    const end = endDateInput.value;
+    if (!start || !end) {
+      dateWarningDiv.innerText = "📅 Veuillez sélectionner les dates de début et retour.";
+      totalSpan.innerText = "0 MAD";
+      return 0;
+    }
+    const startObj = new Date(start);
+    const endObj = new Date(end);
+    if (endObj < startObj) {
+      dateWarningDiv.innerText = "❌ La date de retour doit être postérieure à la date de départ.";
+      totalSpan.innerText = "0 MAD";
+      return 0;
+    }
+    dateWarningDiv.innerText = "";
+    let days = Math.ceil((endObj - startObj) / (1000 * 60 * 60 * 24));
+    if (days === 0) days = 1;
+    const total = days * selectedCar.price;
+    totalSpan.innerText = total.toLocaleString() + " MAD";
+    return total;
+  }
+
+  // Mise à jour de l'aperçu
+  function updateCarPreview() {
+    previewImg.src = selectedCar.image;
+    previewName.innerText = selectedCar.name;
+    previewPriceSpan.innerText = selectedCar.price + " MAD / jour";
+    computeTotal();
+  }
+
+  // Génération du message WhatsApp
+  function generateWhatsAppMessage() {
+    const departure = departureSelect.value;
+    const arrival = arrivalSelect.value;
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
+    if (!startDate || !endDate) {
+      alert("⚠️ Merci de choisir les dates de location.");
+      return null;
+    }
+    const startObj = new Date(startDate);
+    const endObj = new Date(endDate);
+    if (endObj < startObj) {
+      alert("La date de retour ne peut pas être antérieure.");
+      return null;
+    }
+    const days = Math.ceil((endObj - startObj) / (1000*60*60*24)) || 1;
+    const total = days * selectedCar.price;
+    const formatDate = (d) => d.split('-').reverse().join('/');
+    return `🏁 *BENADADA CARS - RÉSERVATION (FÈS)* 🏁
+
+🚗 *Véhicule* : ${selectedCar.name}
+✨ *Caractéristiques* : ${selectedCar.specs}
+💰 Prix journalier : ${selectedCar.price} MAD
+📍 *Lieu de départ* : ${departure}
+📍 *Lieu d'arrivée* : ${arrival}
+📅 *Début* : ${formatDate(startDate)}
+📅 *Retour* : ${formatDate(endDate)}
+⏱️ *Durée* : ${days} jour(s)
+💵 *Total estimé* : ${total.toLocaleString()} MAD
+
+Je souhaite confirmer cette réservation. Merci de me contacter pour finaliser.`;
+  }
+
+  function openWhatsapp() {
+    const msg = generateWhatsAppMessage();
+    if (!msg) return;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  // Affichage des cartes voitures
+  function renderCars() {
+    carsContainer.innerHTML = "";
+    cars.forEach(car => {
+      const card = document.createElement('div');
+      card.className = `car-card ${selectedCar.id === car.id ? 'selected' : ''}`;
+      card.innerHTML = `
+        <img class="car-img" src="${car.image}" alt="${car.name}" loading="lazy">
+        <div class="car-details">
+          <div class="car-title">${car.name}<span class="price-day">${car.price} MAD</span></div>
+          <div class="specs"><i class="fas fa-tachometer-alt"></i> ${car.specs}</div>
+          <div class="specs"><i class="fas fa-users"></i> ${car.seats} places · <i class="fas fa-gas-pump"></i> ${car.fuel}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        selectedCar = car;
+        document.querySelectorAll('.car-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        updateCarPreview();
+      });
+      carsContainer.appendChild(card);
+    });
+  }
+
+  // Initialisation : dates vides, écouteurs
+  function init() {
+    populateLocations();
+    renderCars();
+    startDateInput.value = "";
+    endDateInput.value = "";
+    updateCarPreview();
+    reserveBtn.addEventListener('click', openWhatsapp);
+    navBtn.addEventListener('click', (e) => { e.preventDefault(); openWhatsapp(); });
+    startDateInput.addEventListener('change', computeTotal);
+    endDateInput.addEventListener('change', computeTotal);
+    departureSelect.addEventListener('change', computeTotal);
+    arrivalSelect.addEventListener('change', computeTotal);
+  }
+
+  init();
+</script>
+</body>
+</html>
